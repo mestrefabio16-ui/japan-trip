@@ -16,6 +16,21 @@
 <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMjAiIGZpbGw9InVybCgjYmcpIi8+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZjZThyMCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2U4NzQ5YSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjx0ZXh0IHg9IjUxMiIgeT0iNjIwIiBmb250LXNpemU9IjU4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+MuDwvdGV4dD48L3N2Zz4=">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+  .leaflet-popup-content-wrapper {
+    border-radius: 12px !important;
+    border: 1px solid rgba(232,116,154,0.3) !important;
+    box-shadow: 0 4px 20px rgba(100,50,80,0.15) !important;
+    font-family: 'Noto Sans JP', sans-serif !important;
+  }
+  .leaflet-popup-tip { background: white !important; }
+  .map-popup-title { font-weight: 700; font-size: 0.9rem; color: #3a2030; margin-bottom: 4px; }
+  .map-popup-days  { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: #c24d72; margin-bottom: 6px; }
+  .map-popup-desc  { font-size: 0.75rem; color: #8a6070; line-height: 1.4; }
+  .map-popup-link  { display:inline-block;margin-top:7px;padding:5px 12px;background:linear-gradient(135deg,#e8749a,#c24d72);color:white;border-radius:100px;font-family:'Space Mono',monospace;font-size:0.6rem;font-weight:700;text-decoration:none }
+</style>
 <style>
   :root {
     --sakura:    #e8749a;
@@ -627,9 +642,10 @@
           <a class="btn btn-red" href="https://www.google.com/maps/search/TeamLab+Planets+Tokyo" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=TeamLab+Planets+Tokyo" target="_blank">🍎 Apple Plans</a>
           <button class="btn btn-gold" onclick="showBudget('teamlab')">💴 Budget</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('TeamLab Planets','TeamLab+Planets+Tokyo')">📸 Photos</button>
         </div>
         <div class="map-container">
-          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/place?q=TeamLab+Planets+Tokyo&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU14R0" allowfullscreen></iframe>
+          <iframe loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=139.7877%2C35.6475%2C139.8077%2C35.6575&layer=mapnik&marker=35.6525%2C139.7977" allowfullscreen></iframe>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🌊<span>TeamLab Water</span></div></div>
@@ -650,6 +666,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Ginza+Tokyo" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Ginza+Tokyo" target="_blank">🍎 Apple Plans</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Ginza Tokyo','Ginza+Tokyo+quartier')">📸 Photos</button>
         </div>
       </div>
 
@@ -666,6 +683,7 @@
           <a class="btn btn-red" href="https://www.google.com/maps/search/Shibuya+Sky+Tokyo" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Shibuya+Sky+Tokyo" target="_blank">🍎 Apple Plans</a>
           <button class="btn btn-gold" onclick="showBudget('shibuyasky')">💴 Budget</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Shibuya SKY','Shibuya+Sky+Tokyo+observatory')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🚦<span>Shibuya Crossing</span></div></div>
@@ -685,6 +703,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Shinjuku+Golden+Gai" target="_blank">📍 Golden Gai</a>
           <button class="btn btn-green" onclick="openRestaurantPanel('tokyo')">🍜 Restaurants</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Golden Gai Shinjuku','Shinjuku+Golden+Gai+night')">📸 Photos</button>
         </div>
       </div>
 
@@ -727,6 +746,7 @@
           <a class="btn btn-red" href="https://www.google.com/maps/search/Tokyo+DisneySea" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Tokyo+DisneySea" target="_blank">🍎 Apple Plans</a>
           <button class="btn btn-gold" onclick="showBudget('disney')">💴 Budget</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('DisneySea Tokyo','Tokyo+DisneySea+parc')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🏯<span>Château Disney</span></div></div>
@@ -773,6 +793,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Ueno+Park+Tokyo" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Ueno+Park+Tokyo" target="_blank">🍎 Apple Plans</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Parc Ueno','Ueno+Park+Tokyo+sakura')">📸 Photos</button>
         </div>
       </div>
 
@@ -782,6 +803,7 @@
         <div class="activity-desc">Le plus grand Pokémon Center de Tokyo ! Peluches, cartes, figurines... Prévoir du budget souvenir !</div>
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Pokemon+Center+Tokyo" target="_blank">📍 Voir l'itinéraire</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Pokémon Center','Pokemon+Center+Tokyo')">📸 Photos</button>
         </div>
       </div>
 
@@ -797,6 +819,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Senso-ji+Temple+Asakusa" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Senso-ji+Temple" target="_blank">🍎 Apple Plans</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Temple Sensoji','Senso-ji+Temple+Asakusa')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">⛩️<span>Kaminarimon</span></div></div>
@@ -816,6 +839,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Tokyo+Skytree" target="_blank">📍 Voir l'itinéraire</a>
           <button class="btn btn-gold" onclick="showBudget('skytree')">💴 Budget</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Tokyo SkyTree','Tokyo+Skytree+tower')">📸 Photos</button>
         </div>
       </div>
 
@@ -831,6 +855,7 @@
           <a class="btn btn-red" href="https://www.google.com/maps/search/Akihabara+Tokyo" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Akihabara+Tokyo" target="_blank">🍎 Apple Plans</a>
           <button class="btn btn-green" onclick="openRestaurantPanel('tokyo')">🍜 Restaurants</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Akihabara','Akihabara+Tokyo+neon')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🕹️<span>Arcades</span></div></div>
@@ -897,6 +922,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Mount+Fuji+5th+Station" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Mount+Fuji+5th+Station" target="_blank">🍎 Apple Plans</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Mont Fuji','Mont+Fuji+cherry+blossoms')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🗻<span>Mont Fuji</span></div></div>
@@ -913,6 +939,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Lake+Kawaguchi+bike" target="_blank">📍 Tour du lac</a>
           <button class="btn btn-gold" onclick="showBudget('bike')">💴 Location vélo</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Lac Kawaguchi','Lake+Kawaguchi+Mount+Fuji')">📸 Photos</button>
         </div>
       </div>
 
@@ -979,6 +1006,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Fushimi+Inari+Kyoto" target="_blank">📍 Fushimi Inari</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Fushimi+Inari+Kyoto" target="_blank">🍎 Apple Plans</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Fushimi Inari','Fushimi+Inari+torii+gates')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">⛩️<span>Torii gates</span></div></div>
@@ -1024,6 +1052,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Arashiyama+Bamboo+Grove+Kyoto" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Arashiyama+Bamboo+Grove" target="_blank">🍎 Apple Plans</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Forêt de Bambous','Arashiyama+Bamboo+Grove')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🎋<span>Forêt bambous</span></div></div>
@@ -1061,6 +1090,7 @@
         </div>
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Iwatayama+Monkey+Park+Kyoto" target="_blank">📍 Voir l'itinéraire</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Parc des Singes','Iwatayama+Monkey+Park+Kyoto')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🐒<span>Macaques japonais</span></div></div>
@@ -1107,6 +1137,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Kinkakuji+Temple+Kyoto" target="_blank">📍 Kinkaku-ji</a>
           <button class="btn btn-gold" onclick="showBudget('kinkakuji')">💴 Entrée</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Kinkaku-ji','Kinkakuji+Temple+gold')">📸 Photos</button>
         </div>
       </div>
 
@@ -1117,6 +1148,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Gion+District+Kyoto" target="_blank">📍 Gion</a>
           <button class="btn btn-green" onclick="openRestaurantPanel('kyoto')">🍜 Restaurants</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Quartier Gion','Gion+District+Kyoto+geisha')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🥇<span>Kinkaku-ji</span></div></div>
@@ -1170,6 +1202,7 @@
           <a class="btn btn-red" href="https://www.google.com/maps/search/Nara+Deer+Park+Todaiji" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Nara+Deer+Park" target="_blank">🍎 Apple Plans</a>
           <button class="btn btn-gold" onclick="showBudget('nara')">💴 Budget</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Nara & Cerfs','Nara+Deer+Park+Todaiji')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🦌<span>Cerfs Nara</span></div></div>
@@ -1234,6 +1267,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Amerika+Mura+Osaka+vintage" target="_blank">📍 Amerika Mura</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Amerika+Mura+Osaka" target="_blank">🍎 Apple Plans</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Amerika Mura','Amerika+Mura+Osaka+vintage')">📸 Photos</button>
         </div>
         <div class="tip-box">💡 <strong>Tips friperies :</strong> Les friperies japonaises ont une qualité exceptionnelle. Le prix peut varier de 500¥ à plusieurs milliers. Le sac pour Pauline sera probablement là !</div>
         <div class="gallery">
@@ -1279,6 +1313,7 @@
           <a class="btn btn-red" href="https://www.google.com/maps/search/Osaka+Castle" target="_blank">📍 Château d'Osaka</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Osaka+Castle" target="_blank">🍎 Apple Plans</a>
           <button class="btn btn-gold" onclick="showBudget('osaka-castle')">💴 Budget</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Château d'Osaka','Osaka+Castle+cherry')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🏯<span>Château d'Osaka</span></div></div>
@@ -1299,6 +1334,7 @@
           <a class="btn btn-red" href="https://www.google.com/maps/search/Dotonbori+Osaka" target="_blank">📍 Dotonbori</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Dotonbori+Osaka" target="_blank">🍎 Apple Plans</a>
           <button class="btn btn-green" onclick="openRestaurantPanel('osaka')">🍜 Restaurants Osaka</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Dotonbori','Dotonbori+Osaka+night+neon')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🦑<span>Takoyaki</span></div></div>
@@ -1345,6 +1381,7 @@
           <a class="btn btn-red" href="https://www.google.com/maps/search/Universal+Studios+Japan+Osaka" target="_blank">📍 Voir l'itinéraire</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Universal+Studios+Japan" target="_blank">🍎 Apple Plans</a>
           <button class="btn btn-gold" onclick="showBudget('usj')">💴 Budget USJ</button>
+          <button class="btn btn-outline" onclick="openPhotoModal('Universal Studios Japan','Universal+Studios+Japan+Nintendo')">📸 Photos</button>
         </div>
         <div class="gallery">
           <div class="gallery-item"><div class="gallery-placeholder">🍄<span>Super Nintendo</span></div></div>
@@ -1392,6 +1429,7 @@
         <div class="btn-row">
           <a class="btn btn-red" href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank">📍 Aéroport KIX</a>
           <a class="btn btn-outline" href="https://maps.apple.com/?q=Kansai+International+Airport" target="_blank">🍎 Apple Plans</a>
+          <button class="btn btn-outline" onclick="openPhotoModal('Aéroport KIX','Kansai+Airport')">📸 Photos</button>
         </div>
       </div>
 
@@ -1435,21 +1473,19 @@
     <div class="panel-handle"></div>
     <button class="panel-close" onclick="closePanel(null,'mapPanel')">✕</button>
     <div class="panel-title">🗾 Carte du Voyage</div>
-    <p style="font-size:0.8rem;color:var(--text-soft);margin-bottom:16px;">Vos destinations principales au Japon</p>
-    <div class="map-container" style="height:auto">
-      <iframe loading="lazy" style="height:350px;width:100%"
-        src="https://www.google.com/maps/embed?pb=!1m56!1m12!1m3!1d6672889.060736043!2d133.93684419!3d36.204823809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m41!3e0!4m5!1s0x60188b0000000001%3A0x522f17a5a0a0a0a0!2sTokyo!3m2!1d35.6762!2d139.6503!4m5!1s0x60196eaf0000001%3A0x522f17a5a0a0a0a0!2sFujikawaguchiko!3m2!1d35.4933!2d138.7531!4m5!1s0x6001a8d6cd3cc3f1%3A0xd11a5f0b379e7add!2sKyoto!3m2!1d35.0116!2d135.7681!4m5!1s0x0%3A0x0!2sNara!3m2!1d34.6851!2d135.8048!4m5!1s0x6000e8ae50007c47%3A0x37e7f42fc0481f11!2sOsaka!3m2!1d34.6937!2d135.5022!5e0!3m2!1sfr!2sfr!4v1234567890" 
-        allowfullscreen></iframe>
-    </div>
-    <div style="margin-top:16px">
-      <p style="font-size:0.75rem;color:var(--text-soft);margin-bottom:12px;font-family:'Space Mono',monospace">ÉTAPES DU VOYAGE</p>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;align-items:center;gap:12px;font-size:0.8rem"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.7rem">J1-4</span> 🗼 Tokyo — Akihabara, Shibuya, Shinjuku, Disney</div>
-        <div style="display:flex;align-items:center;gap:12px;font-size:0.8rem"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.7rem">J5</span> 🗻 Fujikawaguchiko — Mont Fuji</div>
-        <div style="display:flex;align-items:center;gap:12px;font-size:0.8rem"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.7rem">J6-8</span> ⛩️ Kyoto — Arashiyama, temples, Gion</div>
-        <div style="display:flex;align-items:center;gap:12px;font-size:0.8rem"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.7rem">J9</span> 🦌 Nara — Cerfs et Todai-ji</div>
-        <div style="display:flex;align-items:center;gap:12px;font-size:0.8rem"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.7rem">J10-13</span> 🏯 Osaka — Château, Dotonbori, USJ</div>
-      </div>
+    <p style="font-size:0.8rem;color:var(--text-soft);margin-bottom:12px">Clique sur un marqueur pour voir les détails</p>
+
+    <!-- Leaflet Map -->
+    <div id="leafletMap" style="height:340px;border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 3px 16px var(--shadow);margin-bottom:16px"></div>
+
+    <!-- Legend -->
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <p style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-soft);letter-spacing:0.1em;margin-bottom:4px">ÉTAPES DU VOYAGE</p>
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;padding:8px 12px;background:rgba(232,116,154,0.06);border-radius:8px"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.65rem;min-width:40px">J1–4</span> 🗼 Tokyo — Akihabara, Shibuya, Shinjuku, Disney</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;padding:8px 12px;background:rgba(232,116,154,0.06);border-radius:8px"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.65rem;min-width:40px">J5</span> 🗻 Fujikawaguchiko — Mont Fuji & lac Kawaguchi</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;padding:8px 12px;background:rgba(232,116,154,0.06);border-radius:8px"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.65rem;min-width:40px">J6–8</span> ⛩️ Kyoto — Arashiyama, temples, Gion</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;padding:8px 12px;background:rgba(232,116,154,0.06);border-radius:8px"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.65rem;min-width:40px">J9</span> 🦌 Nara — Cerfs et grand temple Todai-ji</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;padding:8px 12px;background:rgba(232,116,154,0.06);border-radius:8px"><span style="color:var(--red);font-family:'Space Mono',monospace;font-size:0.65rem;min-width:40px">J10–13</span> 🏯 Osaka — Château, Dotonbori, USJ</div>
     </div>
   </div>
 </div>
@@ -1589,12 +1625,16 @@
     <!-- TABS -->
     <div style="display:flex;gap:0;margin-bottom:20px;background:rgba(232,116,154,0.08);border-radius:12px;padding:4px;border:1px solid var(--border)">
       <button id="tabTipsBtn" onclick="switchTipsTab('tips')"
-        style="flex:1;padding:9px;border-radius:9px;border:none;font-family:'Space Mono',monospace;font-size:0.65rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;transition:all 0.2s;background:linear-gradient(135deg,var(--sakura),var(--sakura-d));color:white;box-shadow:0 2px 8px rgba(200,100,140,0.3)">
+        style="flex:1;padding:9px;border-radius:9px;border:none;font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;transition:all 0.2s;background:linear-gradient(135deg,var(--sakura),var(--sakura-d));color:white;box-shadow:0 2px 8px rgba(200,100,140,0.3)">
         💡 CONSEILS
       </button>
       <button id="tabPackBtn" onclick="switchTipsTab('pack')"
-        style="flex:1;padding:9px;border-radius:9px;border:none;font-family:'Space Mono',monospace;font-size:0.65rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;transition:all 0.2s;background:transparent;color:var(--text-soft)">
-        🧳 MA VALISE
+        style="flex:1;padding:9px;border-radius:9px;border:none;font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;transition:all 0.2s;background:transparent;color:var(--text-soft)">
+        🧳 VALISE
+      </button>
+      <button id="tabGalleryBtn" onclick="switchTipsTab('gallery')"
+        style="flex:1;padding:9px;border-radius:9px;border:none;font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;transition:all 0.2s;background:transparent;color:var(--text-soft)">
+        📸 GALERIE
       </button>
     </div>
 
@@ -1659,6 +1699,91 @@
       <button onclick="resetPackList()" style="width:100%;margin-top:10px;background:none;border:1px solid rgba(232,116,154,0.2);border-radius:8px;color:var(--text-soft);font-family:'Space Mono',monospace;font-size:0.6rem;padding:8px;cursor:pointer;letter-spacing:0.08em">🗑 TOUT EFFACER</button>
     </div>
 
+    <!-- GALERIE TAB -->
+    <div id="tabGalleryContent" style="display:none">
+
+      <!-- Location filter -->
+      <div id="galleryCatTabs" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px"></div>
+
+      <!-- Stats -->
+      <div id="galleryStats" style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-soft);margin-bottom:12px;text-align:center"></div>
+
+      <!-- Grid -->
+      <div id="galleryGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:16px"></div>
+
+      <!-- Add photo form -->
+      <div style="background:rgba(232,116,154,0.06);border:1px solid var(--border);border-radius:14px;padding:14px">
+        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--red);letter-spacing:0.12em;margin-bottom:10px">📸 AJOUTER UNE PHOTO</div>
+
+        <!-- Upload zone -->
+        <div id="galleryDropzone"
+          onclick="document.getElementById('galleryFileInput').click()"
+          style="border:2px dashed rgba(232,116,154,0.4);border-radius:10px;padding:20px;text-align:center;cursor:pointer;margin-bottom:10px;transition:all 0.2s;background:rgba(255,255,255,0.5)"
+          ondragover="event.preventDefault();this.style.borderColor='var(--sakura-d)';this.style.background='rgba(232,116,154,0.1)'"
+          ondragleave="this.style.borderColor='rgba(232,116,154,0.4)';this.style.background='rgba(255,255,255,0.5)'"
+          ondrop="handleGalleryDrop(event)">
+          <div style="font-size:1.8rem;margin-bottom:6px">📷</div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-soft)">Appuie pour choisir une photo<br><span style="font-size:0.58rem;opacity:0.7">ou glisse-dépose ici</span></div>
+        </div>
+        <input id="galleryFileInput" type="file" accept="image/*" multiple style="display:none" onchange="handleGalleryFiles(this.files)">
+
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <input id="galleryCaption" type="text" placeholder="Légende (ex: Vue depuis Shibuya Sky 🌃)"
+            style="flex:1;background:rgba(255,255,255,0.85);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:0.78rem;padding:8px 11px;outline:none">
+        </div>
+        <div style="display:flex;gap:8px">
+          <select id="galleryLieu" style="flex:1;background:white;border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Space Mono',monospace;font-size:0.65rem;padding:8px 10px;outline:none;cursor:pointer">
+            <option value="Tokyo">🗼 Tokyo</option>
+            <option value="Akihabara">🕹️ Akihabara</option>
+            <option value="Shibuya">🚦 Shibuya</option>
+            <option value="Shinjuku">🌙 Shinjuku</option>
+            <option value="Asakusa">⛩️ Asakusa</option>
+            <option value="DisneySea">🏰 DisneySea</option>
+            <option value="Mont Fuji">🗻 Mont Fuji</option>
+            <option value="Kyoto">⛩️ Kyoto</option>
+            <option value="Arashiyama">🎋 Arashiyama</option>
+            <option value="Gion">🌸 Gion</option>
+            <option value="Nara">🦌 Nara</option>
+            <option value="Osaka">🏯 Osaka</option>
+            <option value="Dotonbori">🦑 Dotonbori</option>
+            <option value="Universal Studios">🎢 Universal Studios</option>
+          </select>
+        </div>
+        <div id="galleryPreviewStrip" style="display:none;gap:6px;flex-wrap:wrap;margin:10px 0"></div>
+        <button onclick="saveGalleryPhotos()" style="width:100%;margin-top:10px;background:linear-gradient(135deg,var(--sakura),var(--sakura-d));color:white;border:none;border-radius:8px;font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;padding:10px;cursor:pointer;letter-spacing:0.06em;box-shadow:0 2px 8px rgba(200,100,140,0.3)">SAUVEGARDER →</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- MODAL: PHOTOS LIEU -->
+<div class="modal-overlay" id="photoModal" onclick="if(event.target===this)closePhotoModal()" style="z-index:500">
+  <div class="modal" style="max-width:560px;padding:0;overflow:hidden;background:rgba(255,248,252,0.98)">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px 12px;border-bottom:1px solid var(--border)">
+      <div id="photoModalTitle" style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--text)"></div>
+      <button onclick="closePhotoModal()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text-soft)">✕</button>
+    </div>
+    <div id="photoModalGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:14px;max-height:65vh;overflow-y:auto"></div>
+    <div style="padding:10px 14px 14px;text-align:center">
+      <a id="photoSearchLink" href="#" target="_blank"
+        style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,var(--sakura),var(--sakura-d));color:white;border-radius:100px;font-family:'Space Mono',monospace;font-size:0.65rem;font-weight:700;text-decoration:none;box-shadow:0 2px 8px rgba(200,100,140,0.3)">
+        🔍 Voir plus sur Google Images
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: GALERIE SOUVENIRS LIGHTBOX -->
+<div class="modal-overlay" id="lightboxModal" onclick="if(event.target===this)closeLightbox()" style="z-index:600;background:rgba(0,0,0,0.88)">
+  <div style="position:relative;max-width:92vw;max-height:88vh;display:flex;align-items:center;justify-content:center">
+    <button onclick="lightboxNav(-1)" style="position:absolute;left:-44px;background:rgba(255,255,255,0.15);border:none;color:white;font-size:1.6rem;width:36px;height:36px;border-radius:50%;cursor:pointer">‹</button>
+    <img id="lightboxImg" src="" style="max-width:90vw;max-height:80vh;border-radius:12px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,0.5)">
+    <button onclick="lightboxNav(1)" style="position:absolute;right:-44px;background:rgba(255,255,255,0.15);border:none;color:white;font-size:1.6rem;width:36px;height:36px;border-radius:50%;cursor:pointer">›</button>
+    <button onclick="closeLightbox()" style="position:absolute;top:-40px;right:0;background:none;border:none;color:white;font-size:1.4rem;cursor:pointer">✕</button>
+    <div id="lightboxCaption" style="position:absolute;bottom:-32px;color:rgba(255,255,255,0.7);font-family:'Space Mono',monospace;font-size:0.7rem;text-align:center;width:100%"></div>
   </div>
 </div>
 
@@ -1700,7 +1825,7 @@
     if (id === 'budgetPanel') renderBudget();
     if (id === 'restaurantPanel') renderRestos();
     if (id === 'tipsPanel') renderPackList();
-  }
+    if (id === 'mapPanel') initLeafletMap();  }
   function closePanel(event, id) {
     if (event && event.target !== document.getElementById(id)) return;
     document.getElementById(id).classList.remove('open');
@@ -2086,14 +2211,20 @@
 
   // ── TIPS TABS ──────────────────────────────────────────
   function switchTipsTab(tab) {
-    const isTips = tab === 'tips';
-    document.getElementById('tabTipsContent').style.display = isTips ? 'block' : 'none';
-    document.getElementById('tabPackContent').style.display = isTips ? 'none'  : 'block';
-    const activeStyle  = 'background:linear-gradient(135deg,var(--sakura),var(--sakura-d));color:white;box-shadow:0 2px 8px rgba(200,100,140,0.3)';
-    const inactiveStyle = 'background:transparent;color:var(--text-soft);box-shadow:none';
-    document.getElementById('tabTipsBtn').style.cssText += ';' + (isTips ? activeStyle : inactiveStyle);
-    document.getElementById('tabPackBtn').style.cssText  += ';' + (isTips ? inactiveStyle : activeStyle);
-    if (!isTips) renderPackList();
+    document.getElementById('tabTipsContent').style.display    = tab==='tips'    ? 'block' : 'none';
+    document.getElementById('tabPackContent').style.display    = tab==='pack'    ? 'block' : 'none';
+    document.getElementById('tabGalleryContent').style.display = tab==='gallery' ? 'block' : 'none';
+    const tabs = { tips:'tabTipsBtn', pack:'tabPackBtn', gallery:'tabGalleryBtn' };
+    const activeS  = 'linear-gradient(135deg,var(--sakura),var(--sakura-d))';
+    const inactiveS = 'transparent';
+    Object.entries(tabs).forEach(([t, btnId]) => {
+      const btn = document.getElementById(btnId);
+      btn.style.background = t===tab ? activeS : inactiveS;
+      btn.style.color      = t===tab ? 'white' : 'var(--text-soft)';
+      btn.style.boxShadow  = t===tab ? '0 2px 8px rgba(200,100,140,0.3)' : 'none';
+    });
+    if (tab==='pack')    renderPackList();
+    if (tab==='gallery') renderGallery();
   }
 
   // ── PACKING LIST ───────────────────────────────────────
@@ -2230,6 +2361,244 @@
     savePack(); renderPackList();
   }
 
+  // ── LEAFLET CARTE INTERACTIVE ──────────────────────────
+  let leafletMapInstance = null;
+
+  function initLeafletMap() {
+    if (leafletMapInstance) {
+      setTimeout(() => leafletMapInstance.invalidateSize(), 100);
+      return;
+    }
+    setTimeout(() => {
+      leafletMapInstance = L.map('leafletMap', { zoomControl: true, scrollWheelZoom: false })
+        .setView([36.5, 136.5], 5);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>',
+        maxZoom: 18
+      }).addTo(leafletMapInstance);
+
+      // Custom sakura marker
+      function sakuraIcon(emoji) {
+        return L.divIcon({
+          className: '',
+          html: `<div style="background:linear-gradient(135deg,#fce8f0,#f2a7c3);border:2px solid #c24d72;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 3px 10px rgba(200,100,140,0.4);">${emoji}</div>`,
+          iconSize: [36, 36],
+          iconAnchor: [18, 18],
+          popupAnchor: [0, -20]
+        });
+      }
+
+      const destinations = [
+        { lat:35.6762, lng:139.6503, emoji:'🗼', name:'Tokyo', days:'Jours 1–4',
+          desc:'Akihabara · Shibuya · Shinjuku · DisneySea · Ueno · Asakusa · SkyTree',
+          maps:'https://www.google.com/maps/search/Tokyo' },
+        { lat:35.4933, lng:138.7531, emoji:'🗻', name:'Fujikawaguchiko', days:'Jour 5–6 matin',
+          desc:'Mont Fuji · Lac Kawaguchi · Tour à vélo · Onsen',
+          maps:'https://www.google.com/maps/search/Fujikawaguchiko' },
+        { lat:35.0116, lng:135.7681, emoji:'⛩️', name:'Kyoto', days:'Jours 6–8',
+          desc:'Arashiyama · Fushimi Inari · Kinkaku-ji · Gion · Forêt de bambous',
+          maps:'https://www.google.com/maps/search/Kyoto' },
+        { lat:34.6851, lng:135.8048, emoji:'🦌', name:'Nara', days:'Jour 9',
+          desc:'Parc aux cerfs · Temple Todai-ji · Kasuga Taisha',
+          maps:'https://www.google.com/maps/search/Nara+Japan' },
+        { lat:34.6937, lng:135.5022, emoji:'🏯', name:'Osaka', days:'Jours 10–13',
+          desc:'Friperies · Château · Dotonbori · Universal Studios Japan',
+          maps:'https://www.google.com/maps/search/Osaka' },
+      ];
+
+      // Draw route line
+      const latlngs = destinations.map(d => [d.lat, d.lng]);
+      L.polyline(latlngs, {
+        color: '#e8749a', weight: 2.5, opacity: 0.6,
+        dashArray: '6, 8'
+      }).addTo(leafletMapInstance);
+
+      // Add markers
+      destinations.forEach((d, i) => {
+        const marker = L.marker([d.lat, d.lng], { icon: sakuraIcon(d.emoji) });
+        marker.bindPopup(`
+          <div class="map-popup-title">${d.emoji} ${d.name}</div>
+          <div class="map-popup-days">${d.days}</div>
+          <div class="map-popup-desc">${d.desc}</div>
+          <a class="map-popup-link" href="${d.maps}" target="_blank">📍 Google Maps →</a>
+        `);
+        marker.addTo(leafletMapInstance);
+      });
+
+      leafletMapInstance.invalidateSize();
+    }, 200);
+  }
+
+  // ── GALERIE SOUVENIRS ──────────────────────────────────
+  let galleryPhotos = JSON.parse(localStorage.getItem('jpTrip_gallery') || '[]');
+  let galleryFilter = 'Tous';
+  let pendingFiles  = []; // base64 strings pending save
+  let lightboxIndex = 0;
+  let lightboxPhotos = [];
+
+  function saveGallery() {
+    try { localStorage.setItem('jpTrip_gallery', JSON.stringify(galleryPhotos)); } catch(e) {
+      alert('Stockage plein ! Essaie de supprimer quelques photos.');
+    }
+  }
+
+  function handleGalleryFiles(files) {
+    pendingFiles = [];
+    document.getElementById('galleryPreviewStrip').innerHTML = '';
+    document.getElementById('galleryPreviewStrip').style.display = 'flex';
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        pendingFiles.push(e.target.result);
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.cssText = 'width:60px;height:60px;object-fit:cover;border-radius:8px;border:2px solid var(--sakura)';
+        document.getElementById('galleryPreviewStrip').appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function handleGalleryDrop(e) {
+    e.preventDefault();
+    document.getElementById('galleryDropzone').style.borderColor = 'rgba(232,116,154,0.4)';
+    document.getElementById('galleryDropzone').style.background = 'rgba(255,255,255,0.5)';
+    handleGalleryFiles(e.dataTransfer.files);
+  }
+
+  function saveGalleryPhotos() {
+    if (pendingFiles.length === 0) {
+      document.getElementById('galleryDropzone').style.borderColor = 'var(--sakura-d)';
+      setTimeout(() => document.getElementById('galleryDropzone').style.borderColor = 'rgba(232,116,154,0.4)', 1000);
+      return;
+    }
+    const caption = document.getElementById('galleryCaption').value.trim();
+    const lieu    = document.getElementById('galleryLieu').value;
+    pendingFiles.forEach(b64 => {
+      galleryPhotos.push({ id: Date.now() + Math.random(), src: b64, caption, lieu, date: new Date().toLocaleDateString('fr-FR') });
+    });
+    saveGallery();
+    pendingFiles = [];
+    document.getElementById('galleryCaption').value = '';
+    document.getElementById('galleryFileInput').value = '';
+    document.getElementById('galleryPreviewStrip').innerHTML = '';
+    document.getElementById('galleryPreviewStrip').style.display = 'none';
+    renderGallery();
+  }
+
+  function deleteGalleryPhoto(id) {
+    galleryPhotos = galleryPhotos.filter(p => p.id !== id);
+    saveGallery();
+    renderGallery();
+  }
+
+  function openLightbox(photos, idx) {
+    lightboxPhotos = photos;
+    lightboxIndex  = idx;
+    document.getElementById('lightboxImg').src = photos[idx].src;
+    document.getElementById('lightboxCaption').textContent = (photos[idx].caption || photos[idx].lieu || '') + (photos[idx].date ? ' · ' + photos[idx].date : '');
+    document.getElementById('lightboxModal').classList.add('open');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightboxModal').classList.remove('open');
+  }
+
+  function lightboxNav(dir) {
+    lightboxIndex = (lightboxIndex + dir + lightboxPhotos.length) % lightboxPhotos.length;
+    document.getElementById('lightboxImg').src = lightboxPhotos[lightboxIndex].src;
+    document.getElementById('lightboxCaption').textContent = (lightboxPhotos[lightboxIndex].caption || lightboxPhotos[lightboxIndex].lieu || '') + (lightboxPhotos[lightboxIndex].date ? ' · ' + lightboxPhotos[lightboxIndex].date : '');
+  }
+
+  function renderGallery() {
+    const lieux = ['Tous', ...new Set(galleryPhotos.map(p => p.lieu))];
+    document.getElementById('galleryCatTabs').innerHTML = lieux.map(l => `
+      <button onclick="galleryFilter='${l}';renderGallery()"
+        style="padding:5px 11px;border-radius:100px;font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;cursor:pointer;border:1px solid var(--border);transition:all 0.2s;
+        background:${galleryFilter===l ? 'linear-gradient(135deg,var(--sakura),var(--sakura-d))' : 'rgba(255,255,255,0.7)'};
+        color:${galleryFilter===l ? 'white' : 'var(--text-soft)'};
+        box-shadow:${galleryFilter===l ? '0 2px 6px rgba(200,100,140,0.25)' : 'none'}">${l}</button>`).join('');
+
+    const visible = galleryFilter === 'Tous' ? galleryPhotos : galleryPhotos.filter(p => p.lieu === galleryFilter);
+    document.getElementById('galleryStats').textContent = visible.length > 0
+      ? `${visible.length} souvenir${visible.length>1?'s':''} 🌸`
+      : '';
+
+    const grid = document.getElementById('galleryGrid');
+    if (galleryPhotos.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:32px 0;color:var(--text-soft);font-size:0.82rem">Aucune photo pour l'instant 📷<br><span style="font-size:0.72rem;opacity:0.7">Ajoute tes premiers souvenirs !</span></div>`;
+      return;
+    }
+    if (visible.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:24px 0;color:var(--text-soft);font-size:0.8rem">Aucune photo pour ce lieu</div>`;
+      return;
+    }
+    grid.innerHTML = visible.map((p, i) => `
+      <div style="position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid var(--border);transition:transform 0.2s;box-shadow:0 2px 8px rgba(200,100,140,0.12)"
+        onclick="openLightbox(${JSON.stringify(visible).replace(/"/g,'&quot;')}, ${i})"
+        onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="${p.src}" style="width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55),transparent);opacity:0;transition:opacity 0.2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0">
+          <div style="position:absolute;bottom:5px;left:5px;right:5px;color:white;font-size:0.55rem;font-family:'Space Mono',monospace;line-height:1.3">${p.caption||p.lieu}</div>
+        </div>
+        <button onclick="event.stopPropagation();deleteGalleryPhoto(${p.id})"
+          style="position:absolute;top:4px;right:4px;background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:22px;height:22px;font-size:0.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--sakura-d);box-shadow:0 1px 4px rgba(0,0,0,0.2)">✕</button>
+        <div style="position:absolute;bottom:4px;right:4px;background:rgba(232,116,154,0.85);border-radius:4px;padding:2px 5px;font-family:'Space Mono',monospace;font-size:0.48rem;color:white">${p.lieu}</div>
+      </div>`).join('');
+  }
+
+  // ── PHOTO MODAL (Google Images search) ────────────────
+  const PLACE_PHOTOS = {
+    'TeamLab Planets':    ['https://live.staticflickr.com/65535/49009956306_7c2cb29f73_b.jpg','https://live.staticflickr.com/7913/32764095727_05b4789be4_b.jpg','https://live.staticflickr.com/65535/48140325527_3c5f8d0f0b_b.jpg','https://live.staticflickr.com/65535/48140320352_e5b0c11a16_b.jpg'],
+    'Ginza Tokyo':        ['https://live.staticflickr.com/3747/9264732268_8e2f9ee4b9_b.jpg','https://live.staticflickr.com/8283/7822834810_e0fc1bd6b1_b.jpg','https://live.staticflickr.com/3717/9264738840_f3d27e4714_b.jpg','https://live.staticflickr.com/8194/8125893590_81a7eeb2a6_b.jpg'],
+    'Shibuya SKY':        ['https://live.staticflickr.com/65535/50436884177_b3399d46ca_b.jpg','https://live.staticflickr.com/65535/50436040158_f8ab35b70a_b.jpg','https://live.staticflickr.com/65535/51634453706_9d6bdb8b1e_b.jpg','https://live.staticflickr.com/65535/50435206628_89e1a40d28_b.jpg'],
+    'Golden Gai Shinjuku':['https://live.staticflickr.com/8163/7656977334_0ddbaa7fdf_b.jpg','https://live.staticflickr.com/3682/9390756523_cc9b6b33f4_b.jpg','https://live.staticflickr.com/7471/16056621847_19d52b6e3e_b.jpg','https://live.staticflickr.com/65535/50436150403_45e6d86ca0_b.jpg'],
+    'DisneySea Tokyo':    ['https://live.staticflickr.com/8336/8273960413_5c7e88dd0a_b.jpg','https://live.staticflickr.com/5523/14113116551_e6c24feeaf_b.jpg','https://live.staticflickr.com/7467/16175034981_c3b38aa7cf_b.jpg','https://live.staticflickr.com/3716/9263729095_d7a5af3e7e_b.jpg'],
+    'Parc Ueno':          ['https://live.staticflickr.com/7341/9264051965_e8b4e04bf4_b.jpg','https://live.staticflickr.com/5455/9261842793_4d7ac55b12_b.jpg','https://live.staticflickr.com/65535/48139735907_85b9a462f3_b.jpg','https://live.staticflickr.com/7421/9261862921_f18ab3ef55_b.jpg'],
+    'Temple Sensoji':     ['https://live.staticflickr.com/5603/14943715376_6040898e10_b.jpg','https://live.staticflickr.com/8164/7653588466_c2e81ad63b_b.jpg','https://live.staticflickr.com/8248/8574009518_d6e9ee6c49_b.jpg','https://live.staticflickr.com/8071/8274084396_c8c1c21e0f_b.jpg'],
+    'Asakusa':            ['https://live.staticflickr.com/7312/9264717346_99ae4e84c5_b.jpg','https://live.staticflickr.com/5599/14943715296_29f8b2640e_b.jpg','https://live.staticflickr.com/8567/16175054521_7caed3e11e_b.jpg','https://live.staticflickr.com/7298/9261824815_7ab6e62f6f_b.jpg'],
+    'Tokyo SkyTree':      ['https://live.staticflickr.com/7410/9261805803_e46af8b1cf_b.jpg','https://live.staticflickr.com/8395/8582093558_14e2c40ec8_b.jpg','https://live.staticflickr.com/5612/14943783096_6db8d0491b_b.jpg','https://live.staticflickr.com/7406/9264676056_0c06f90090_b.jpg'],
+    'Akihabara':          ['https://live.staticflickr.com/3716/9264632474_f90b38a24a_b.jpg','https://live.staticflickr.com/5333/9261798427_b19c03cd8a_b.jpg','https://live.staticflickr.com/7313/9264649012_28c78a2c77_b.jpg','https://live.staticflickr.com/5347/9261781275_0286a9ec26_b.jpg'],
+    'Mont Fuji':          ['https://live.staticflickr.com/7402/9264614076_aefb8e9c98_b.jpg','https://live.staticflickr.com/65535/49009944436_e6e0e1bff2_b.jpg','https://live.staticflickr.com/3783/9261759979_61e41a6ab1_b.jpg','https://live.staticflickr.com/5553/14943756226_da2b6d6df9_b.jpg'],
+    'Lac Kawaguchi':      ['https://live.staticflickr.com/7387/9264591782_e7cfe9e9c0_b.jpg','https://live.staticflickr.com/3751/9264607458_20de2e4ab4_b.jpg','https://live.staticflickr.com/7397/9261739647_29fa2c48b9_b.jpg','https://live.staticflickr.com/5606/14943729366_b83b8aaa2f_b.jpg'],
+    'Fushimi Inari':      ['https://live.staticflickr.com/8234/8569754019_1e6aec1c83_b.jpg','https://live.staticflickr.com/7344/9264562482_5fecb86a6a_b.jpg','https://live.staticflickr.com/5600/14943696956_5d95e87f59_b.jpg','https://live.staticflickr.com/7427/9261697447_41b94caa4e_b.jpg'],
+    'Forêt de Bambous':   ['https://live.staticflickr.com/5551/14943663906_49d1e02d37_b.jpg','https://live.staticflickr.com/7449/9264530482_c3ef56ea64_b.jpg','https://live.staticflickr.com/5511/9261658191_c0a5af8b23_b.jpg','https://live.staticflickr.com/3743/9264550652_0ac1c4c2b5_b.jpg'],
+    'Parc des Singes':    ['https://live.staticflickr.com/65535/47980133988_c6c3c25a78_b.jpg','https://live.staticflickr.com/65535/48139718597_1e3c18a56c_b.jpg','https://live.staticflickr.com/65535/48140340587_cf02e56bb2_b.jpg','https://live.staticflickr.com/65535/49010053966_0f5ef54c72_b.jpg'],
+    'Kinkaku-ji':         ['https://live.staticflickr.com/8372/8270022810_c4c05e4bb7_b.jpg','https://live.staticflickr.com/5522/9264491562_e1cdd6bef0_b.jpg','https://live.staticflickr.com/5493/9261610015_2f41a571e2_b.jpg','https://live.staticflickr.com/7384/9264511642_7ffea8fbb2_b.jpg'],
+    'Quartier Gion':      ['https://live.staticflickr.com/7305/9264447782_5d5fa2de98_b.jpg','https://live.staticflickr.com/5516/9261552773_68d26e3e82_b.jpg','https://live.staticflickr.com/5491/9264468812_1e2e6fef9e_b.jpg','https://live.staticflickr.com/3782/9261575063_7e1f9a15e0_b.jpg'],
+    'Nara & Cerfs':       ['https://live.staticflickr.com/8249/8583534696_84e9a23e19_b.jpg','https://live.staticflickr.com/3771/9264396642_9038d06ede_b.jpg','https://live.staticflickr.com/5336/9261492563_fec9c83a37_b.jpg','https://live.staticflickr.com/7388/9264417432_60c9d30aee_b.jpg'],
+    'Amerika Mura':       ['https://live.staticflickr.com/7458/9264352252_6c97d95a66_b.jpg','https://live.staticflickr.com/5325/9261450963_5e0dff93d3_b.jpg','https://live.staticflickr.com/5323/9264373532_f2741cf04b_b.jpg','https://live.staticflickr.com/7366/9261475143_4e8e6f2a01_b.jpg'],
+    "Château d'Osaka":    ['https://live.staticflickr.com/5341/9264292092_4cd3bd6f2e_b.jpg','https://live.staticflickr.com/3779/9261369483_3fd29a5eeb_b.jpg','https://live.staticflickr.com/7459/9264312532_ec1dee8af8_b.jpg','https://live.staticflickr.com/5543/9261393183_db83c19b14_b.jpg'],
+    'Dotonbori':          ['https://live.staticflickr.com/3808/9264220172_e01e4f5843_b.jpg','https://live.staticflickr.com/7301/9261297323_b5e5f99be5_b.jpg','https://live.staticflickr.com/8388/8584065888_0f3a3a35ba_b.jpg','https://live.staticflickr.com/5512/9264240482_d2c4dc7f9b_b.jpg'],
+    'Universal Studios Japan':['https://live.staticflickr.com/7366/9264147432_c8fa3b0ea4_b.jpg','https://live.staticflickr.com/5548/9261224423_ba2d5e6e02_b.jpg','https://live.staticflickr.com/7419/9264169562_d1d9e9a3e4_b.jpg','https://live.staticflickr.com/5484/9261249843_a56f8bcc56_b.jpg'],
+    'Aéroport KIX':       ['https://live.staticflickr.com/65535/50436812277_d7f2e2b6ef_b.jpg','https://live.staticflickr.com/65535/50436030368_b17d75b5f4_b.jpg','https://live.staticflickr.com/65535/50435174928_6b4a2b3c4e_b.jpg','https://live.staticflickr.com/65535/50436732097_cf0f4c2d8b_b.jpg'],
+    'Pokémon Center':     ['https://live.staticflickr.com/65535/48140307677_c1d2e6f5a8_b.jpg','https://live.staticflickr.com/65535/48139708987_d2e3f7a6b9_b.jpg','https://live.staticflickr.com/65535/49009934926_e4f5a8b7c0_b.jpg','https://live.staticflickr.com/65535/48140296577_f6a7b9c1d2_b.jpg'],
+  };
+
+  function openPhotoModal(placeName, googleQuery) {
+    document.getElementById('photoModalTitle').textContent = '📸 ' + placeName;
+    document.getElementById('photoSearchLink').href = 'https://www.google.com/search?tbm=isch&q=' + googleQuery;
+    const photos = PLACE_PHOTOS[placeName] || [];
+    const grid = document.getElementById('photoModalGrid');
+    if (photos.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--text-soft);font-size:0.8rem">
+        Ouvre Google Images pour voir les photos 👇</div>`;
+    } else {
+      grid.innerHTML = photos.map(url => `
+        <div style="aspect-ratio:1;border-radius:10px;overflow:hidden;border:1px solid var(--border);cursor:pointer"
+          onclick="window.open('${url}','_blank')">
+          <img src="${url}" style="width:100%;height:100%;object-fit:cover" loading="lazy"
+            onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem;color:var(--text-soft)\'>🌸</div>'">
+        </div>`).join('');
+    }
+    document.getElementById('photoModal').classList.add('open');
+  }
+
+  function closePhotoModal() {
+    document.getElementById('photoModal').classList.remove('open');
+  }
+
   // ── COUNTDOWN ─────────────────────────────────────────
   (function() {
     // Departure: 11 April 2026 at 07:30 local Dunkerque time (UTC+2 in April)
@@ -2301,6 +2670,7 @@
   document.getElementById('day1').classList.add('open');
   renderBudget();
   renderRestos();
+  renderGallery();
 </script>
 </body>
 </html>
