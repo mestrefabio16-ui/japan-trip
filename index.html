@@ -505,6 +505,9 @@
       <div class="hero-date-pill">🦌 Nara · Osaka · USJ</div>
     </div>
 
+    <!-- DAILY BANNER -->
+    <div id="dailyBanner" style="display:none;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:16px;padding:14px 20px;margin:0 auto 20px;max-width:400px;box-shadow:0 4px 20px var(--shadow);text-align:center"></div>
+
     <!-- COUNTDOWN -->
     <div class="countdown-header" id="countdownHeader">✈️ DÉPART DANS</div>
     <div id="countdownWrap">
@@ -524,11 +527,11 @@
 </section>
 
 <div class="converter-banner">
-  <div class="converter-label">💶 CONVERTISSEUR EUR → JPY</div>
-  <input type="number" class="converter-input" id="eurInput" placeholder="100" value="100" oninput="convertCurrency()">
+  <div class="converter-label">💴 CONVERTISSEUR ¥ → €</div>
+  <input type="number" class="converter-input" id="yenInput" placeholder="1000" value="1000" oninput="convertCurrency()">
   <div class="converter-eq">=</div>
-  <div class="converter-result" id="yenResult">16 200 ¥</div>
-  <div class="converter-rate" id="rateInfo">Taux estimé: 1€ ≈ 162¥</div>
+  <div class="converter-result" id="eurResult">6,17 €</div>
+  <div class="converter-rate" id="rateInfo">Taux estimé: 185¥ ≈ 1€</div>
 </div>
 
 <!-- DAYS -->
@@ -541,7 +544,7 @@
       <div class="day-num">JOUR 1</div>
       <div>
         <div class="day-title">✈️ Départ — Dunkerque → Tokyo</div>
-        <div class="day-date">Vendredi 11 Avril 2026</div>
+        <div class="day-date">Samedi 11 Avril 2026</div>
       </div>
       <div class="day-arrow">▼</div>
     </div>
@@ -705,6 +708,22 @@
           <button class="btn btn-green" onclick="openRestaurantPanel('tokyo')">🍜 Restaurants</button>
           <button class="btn btn-outline" onclick="openPhotoModal('Golden Gai Shinjuku','Shinjuku+Golden+Gai+night')">📸 Photos</button>
         </div>
+      </div>
+
+
+      <div class="activity">
+        <div class="activity-time">17:00</div>
+        <div class="activity-name">🚗 Fast &amp; Furious Tokyo Drift — Expérience</div>
+        <div class="activity-desc">Balade en Bosozoku (voitures décorées façon Tokyo Drift) dans les rues de Tokyo ! Expérience unique inspirée du film. Plusieurs opérateurs proposent des circuits nocturnes avec décoration LED.</div>
+        <div class="transport-box">
+          <div class="transport-item"><span class="transport-icon">📍</span><div><div class="transport-label">LIEU</div><div class="transport-val">Shibuya / Shinjuku area</div></div></div>
+          <div class="transport-item"><span class="transport-icon">⏱️</span><div><div class="transport-label">HEURE</div><div class="transport-val">17h00</div></div></div>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-red" href="https://www.google.com/maps/search/Shibuya+Tokyo" target="_blank">📍 Shibuya</a>
+          <a class="btn btn-outline" href="https://www.tokyodriftjapan.com" target="_blank">🚗 Réserver</a>
+        </div>
+        <div class="tip-box">💡 <strong>Conseil :</strong> Plusieurs opérateurs comme <strong>Street Story</strong> ou <strong>Tokyo Drift Japan</strong> proposent cette expérience. Réservez à l'avance — très populaire !</div>
       </div>
 
       <div class="budget-box">
@@ -1125,6 +1144,32 @@
     <div class="day-body">
 
       <div class="activity">
+        <div class="activity-time">08:30</div>
+        <div class="activity-name">👘 Location de Kimono — Kyoto</div>
+        <div class="activity-desc">Location de kimono traditionnel pour la journée. De nombreuses boutiques dans le quartier Higashiyama proposent des kimonos magnifiques. Coiffure et accessoires inclus. Partez habillés pour l'séance photo !</div>
+        <div class="transport-box">
+          <div class="transport-item"><span class="transport-icon">👘</span><div><div class="transport-label">RENDEZ-VOUS</div><div class="transport-val">08h30 — Boutique kimono</div></div></div>
+          <div class="transport-item"><span class="transport-icon">💴</span><div><div class="transport-label">PRIX</div><div class="transport-val">~3000-5000¥</div></div></div>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-red" href="https://www.google.com/maps/search/kimono+rental+Kyoto+Higashiyama" target="_blank">📍 Boutiques Kimono</a>
+          <a class="btn btn-outline" href="https://maps.apple.com/?q=kimono+rental+Kyoto" target="_blank">🍎 Apple Plans</a>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">09:30</div>
+        <div class="activity-name">📸 Séance Photo avec Photographe Professionnel</div>
+        <div class="activity-desc">Rendez-vous avec votre photographe à Kyoto. Séance photo en kimono dans les ruelles de Gion, devant Fushimi Inari ou dans les jardins du temple. Des souvenirs inoubliables à rapporter ! 🌸</div>
+        <div class="transport-box">
+          <div class="transport-item"><span class="transport-icon">📸</span><div><div class="transport-label">RENDEZ-VOUS</div><div class="transport-val">09h30 — Photographe</div></div></div>
+          <div class="transport-item"><span class="transport-icon">⏱️</span><div><div class="transport-label">DURÉE</div><div class="transport-val">~1h30-2h</div></div></div>
+        </div>
+        <div class="tip-box">🌸 <strong>Conseil :</strong> Apportez votre téléphone chargé pour les photos perso ! Le photographe fournira les fichiers HD sous quelques jours. Proposez des lieux spécifiques à l'avance.</div>
+      </div>
+
+
+      <div class="activity">
         <div class="activity-time">Journée complète</div>
         <div class="activity-name">🏛️ Temples & Quartiers de Kyoto</div>
         <div class="activity-desc">Kyoto compte plus de 1600 temples et sanctuaires ! Incontournables : Kinkaku-ji (Pavillon d'Or), Ginkaku-ji (Pavillon d'Argent), Ryoan-ji (jardin zen aux pierres), quartier Gion (geishas), Nishiki Market.</div>
@@ -1275,6 +1320,23 @@
           <div class="gallery-item"><div class="gallery-placeholder">👜<span>Vintage bags</span></div></div>
           <div class="gallery-item"><div class="gallery-placeholder">🛍️<span>Shinsaibashi</span></div></div>
         </div>
+      </div>
+
+
+      <div class="activity">
+        <div class="activity-time">19:40</div>
+        <div class="activity-name">⛵ Balade en Bateau sur les Canaux d'Osaka</div>
+        <div class="activity-desc">Croisière nocturne sur les rivières et canaux d'Osaka. Vue magnifique sur les ponts illuminés et les reflets de la ville dans l'eau. Le bateau passe notamment sous le célèbre pont de Dotonbori.</div>
+        <div class="transport-box">
+          <div class="transport-item"><span class="transport-icon">🚢</span><div><div class="transport-label">DÉPART</div><div class="transport-val">19h40</div></div></div>
+          <div class="transport-item"><span class="transport-icon">📍</span><div><div class="transport-label">EMBARQUEMENT</div><div class="transport-val">Tombori River Cruise</div></div></div>
+          <div class="transport-item"><span class="transport-icon">⏱️</span><div><div class="transport-label">DURÉE</div><div class="transport-val">~20 min</div></div></div>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-red" href="https://www.google.com/maps/search/Tombori+River+Cruise+Osaka" target="_blank">📍 Tombori River Cruise</a>
+          <a class="btn btn-outline" href="https://maps.apple.com/?q=Tombori+River+Cruise+Osaka" target="_blank">🍎 Apple Plans</a>
+        </div>
+        <div class="tip-box">💡 <strong>Conseil :</strong> Le Tombori River Cruise (道頓堀) part toutes les 20 min. Prix ~900¥/pers. Magnifique en soirée avec les néons de Dotonbori qui se reflètent dans l'eau !</div>
       </div>
 
       <div class="budget-box">
@@ -1452,15 +1514,19 @@
   </button>
   <button class="nav-item" onclick="openPanel('restaurantPanel')">
     <span class="icon">🍜</span>
-    <span>Restaurants</span>
+    <span>Restos</span>
   </button>
   <button class="nav-item" onclick="openPanel('budgetPanel')">
     <span class="icon">💴</span>
-    <span>Budget total</span>
+    <span>Budget</span>
   </button>
   <button class="nav-item" onclick="openPanel('tipsPanel')">
     <span class="icon">💡</span>
     <span>Conseils</span>
+  </button>
+  <button class="nav-item" onclick="requestNotifications()" id="notifNavBtn">
+    <span class="icon">🔔</span>
+    <span>Notifs</span>
   </button>
 </nav>
 
@@ -1805,13 +1871,13 @@
 </div>
 
 <script>
-  const RATE = 162;
+  const RATE = 185;
 
   // ── CONVERTER ──────────────────────────────────────────────
   function convertCurrency() {
-    const eur = parseFloat(document.getElementById('eurInput').value) || 0;
-    const yen = Math.round(eur * RATE);
-    document.getElementById('yenResult').textContent = yen.toLocaleString('fr-FR') + ' ¥';
+    const yen = parseFloat(document.getElementById('yenInput').value) || 0;
+    const eur = (yen / RATE).toFixed(2);
+    document.getElementById('eurResult').textContent = parseFloat(eur).toLocaleString('fr-FR', {minimumFractionDigits:2}) + ' €';
   }
   convertCurrency();
 
@@ -2598,6 +2664,119 @@
   function closePhotoModal() {
     document.getElementById('photoModal').classList.remove('open');
   }
+
+  // ── NOTIFICATIONS ──────────────────────────────────────
+  const TRIP_START = new Date('2026-04-11T07:30:00+02:00');
+  const TRIP_END   = new Date('2026-04-24T23:59:00+09:00');
+
+  const DAILY_PROGRAM = {
+    '2026-04-11': { emoji:'✈️', title:'Jour 1 — Départ !', desc:'Vol Dunkerque → Bruxelles → Hong Kong → Tokyo Narita. Bon voyage ! 🌸' },
+    '2026-04-12': { emoji:'✈️', title:'Jour 1 (suite) — En vol', desc:'Escale Hong Kong puis arrivée à Narita. Achetez votre Suica dès l\'arrivée !' },
+    '2026-04-13': { emoji:'🎨', title:'Jour 2 — TeamLab & Shibuya', desc:'TeamLab Planets (09h), Ginza, Shibuya SKY, Shinjuku. Et Tokyo Drift à 17h ! 🚗' },
+    '2026-04-14': { emoji:'🏰', title:'Jour 3 — Disneyland & DisneySea', desc:'Journée complète à Tokyo Disney Resort. Arrivez tôt pour les attractions !' },
+    '2026-04-15': { emoji:'⛩️', title:'Jour 4 — Ueno, Asakusa & Akihabara', desc:'Ueno, Pokémon Center, Temple Sensoji, Tokyo SkyTree, Akihabara.' },
+    '2026-04-16': { emoji:'🗻', title:'Jour 5 — Mont Fuji', desc:'Bus 06h05 depuis Shinjuku → Fujikawaguchiko. Vélo autour du lac, onsen le soir !' },
+    '2026-04-17': { emoji:'⛩️', title:'Jour 6 — Kyoto', desc:'Shinkansen 11h17 → Kyoto. Fushimi Inari le soir. Bienvenue à Kyoto 🌸' },
+    '2026-04-18': { emoji:'🎋', title:'Jour 7 — Arashiyama', desc:'Forêt de bambous (avant 8h !), cérémonie du thé, Parc des singes.' },
+    '2026-04-19': { emoji:'👘', title:'Jour 8 — Kimono & Photos', desc:'08h30 location kimono · 09h30 séance photo · Kinkaku-ji · Gion en kimono !' },
+    '2026-04-20': { emoji:'🦌', title:'Jour 9 — Nara', desc:'Train vers Nara. Cerfs en liberté, Temple Todai-ji, Kasuga Taisha.' },
+    '2026-04-21': { emoji:'🛍️', title:'Jour 10 — Osaka & Shopping', desc:'Osaka ! Amerika Mura pour les friperies de Pauline. Bateau à 19h40 🚢' },
+    '2026-04-22': { emoji:'🏯', title:'Jour 11 — Château & Dotonbori', desc:'Château d\'Osaka le matin · Dotonbori le soir : takoyaki, okonomiyaki, Glico Man !' },
+    '2026-04-23': { emoji:'🎢', title:'Jour 12 — Universal Studios Japan', desc:'Journée complète à USJ ! Super Nintendo World. Arrivez tôt pour les Express Pass !' },
+    '2026-04-24': { emoji:'🏠', title:'Jour 14 — Retour', desc:'Dernier jour au Japon. Vol depuis Kansai (KIX). Arigatou gozaimashita ! 🌸' },
+  };
+
+  let notifPermission = false;
+
+  async function requestNotifications() {
+    if (!('Notification' in window)) {
+      showNotifToast('❌ Notifications non supportées sur ce navigateur', 'error');
+      return;
+    }
+    const perm = await Notification.requestPermission();
+    notifPermission = (perm === 'granted');
+    if (notifPermission) {
+      showNotifToast('🔔 Notifications activées ! Tu recevras un rappel chaque jour 🌸');
+      scheduleNotifications();
+      localStorage.setItem('jpTrip_notifs', 'true');
+    } else {
+      showNotifToast('🔕 Notifications refusées. Active-les dans les réglages iPhone/navigateur.', 'warn');
+    }
+  }
+
+  function scheduleNotifications() {
+    // Show today's notification immediately if during trip
+    const now     = new Date();
+    const todayKey = now.toISOString().slice(0, 10);
+    const program  = DAILY_PROGRAM[todayKey];
+    const diff     = TRIP_START - now;
+    const daysLeft = Math.ceil(diff / 86400000);
+
+    if (notifPermission || Notification.permission === 'granted') {
+      if (diff > 0) {
+        // Before trip
+        new Notification('✈️ Japan Trip 2026', {
+          body: `Plus que ${daysLeft} jour${daysLeft>1?'s':''} avant le départ ! 🌸`,
+          icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🌸</text></svg>'
+        });
+      } else if (program) {
+        new Notification(program.emoji + ' ' + program.title, {
+          body: program.desc,
+          icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🌸</text></svg>'
+        });
+      }
+    }
+  }
+
+  function showNotifToast(msg, type='success') {
+    let toast = document.getElementById('notifToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'notifToast';
+      document.body.appendChild(toast);
+    }
+    const bg = type==='error' ? '#c24d72' : type==='warn' ? '#b8762a' : '#4a7a5a';
+    toast.style.cssText = `position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:9999;
+      background:${bg};color:white;padding:12px 20px;border-radius:100px;
+      font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;
+      box-shadow:0 4px 20px rgba(0,0,0,0.2);max-width:90vw;text-align:center;
+      opacity:1;transition:opacity 0.5s`;
+    toast.textContent = msg;
+    clearTimeout(toast._to);
+    toast._to = setTimeout(() => { toast.style.opacity = 0; }, 3500);
+  }
+
+  // Daily reminder banner in hero
+  function showDailyBanner() {
+    const now      = new Date();
+    const diff     = TRIP_START - now;
+    const daysLeft = Math.ceil(diff / 86400000);
+    const todayKey = now.toISOString().slice(0, 10);
+    const program  = DAILY_PROGRAM[todayKey];
+    const banner   = document.getElementById('dailyBanner');
+    if (!banner) return;
+
+    if (diff > 0) {
+      banner.innerHTML = `
+        <div style="font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--fuji-blue);margin-bottom:6px;letter-spacing:0.15em">📅 RAPPEL DU JOUR</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text)">Plus que <span style="color:var(--sakura-d);font-size:1.4rem">${daysLeft}</span> jour${daysLeft>1?'s':''} avant le départ !</div>
+        <div style="font-size:0.72rem;color:var(--text-soft);margin-top:4px">Le grand voyage commence le <strong>Samedi 11 Avril</strong> 🌸</div>`;
+      banner.style.display = 'block';
+    } else if (program) {
+      banner.innerHTML = `
+        <div style="font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--sakura-d);margin-bottom:6px;letter-spacing:0.15em">🗾 PROGRAMME DU JOUR</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text)">${program.emoji} ${program.title}</div>
+        <div style="font-size:0.74rem;color:var(--text-soft);margin-top:5px;line-height:1.5">${program.desc}</div>`;
+      banner.style.display = 'block';
+    }
+  }
+
+  // Check if already granted
+  if (localStorage.getItem('jpTrip_notifs') === 'true' && Notification.permission === 'granted') {
+    notifPermission = true;
+  }
+
+  showDailyBanner();
 
   // ── COUNTDOWN ─────────────────────────────────────────
   (function() {
